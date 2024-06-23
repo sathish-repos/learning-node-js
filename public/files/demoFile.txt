@@ -1,0 +1,6 @@
+This is demo file for read and write data into it.
+Hello its written from writeFile function
+Hello its written from writeFile function
+Hello its written from writeFile function
+Hello its written from writeFile function
+Hello its written from writeFile function

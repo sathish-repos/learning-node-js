@@ -12,9 +12,9 @@ import fs from "fs/promises";
 // console.log(data);
 
 // readFile() - promise .then()
-fs.readFile("./public/files/demoFile.txt", "utf8")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+// fs.readFile("./public/files/demoFile.txt", "utf8")
+//   .then((data) => console.log(data))
+//   .catch((error) => console.log(error));
 
 // readFile() - async/await
 const readFile = async () => {
@@ -28,9 +28,9 @@ const readFile = async () => {
 
 const writeFile = async () => {
   try {
-    await fs.appendFile(
+    await fs.writeFile(
       "./public/files/demoFile.txt",
-      "\nHello its written from writeFile function"
+      "Hello its written from writeFile function"
     );
     console.log("file appended to...");
   } catch (error) {
@@ -38,5 +38,17 @@ const writeFile = async () => {
   }
 };
 
-writeFile();
-readFile();
+export const appendFile = async (req, res, filePath, errorFilePath) => {
+  try {
+    let time = new Date();
+    await fs.appendFile(filePath, `\n${time} ${req.method} to ${req.url}`);
+  } catch (error) {
+    fs.appendFile(
+      errorFilePath,
+      `\n${req.method} to ${req.url} (error)=> ${error}`
+    );
+  }
+};
+
+// writeFile();
+// readFile();

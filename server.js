@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // get current path
 const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export const __dirname = path.dirname(__filename);
 
 const server = http.createServer(async (req, res) => {
   // res.write("Hello world!");
@@ -63,6 +63,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Server listening to port: ${PORT}`);
+server.listen(8000, () => {
+  console.log(`Server listening to port: ${8000}`);
 });

@@ -1,6 +1,26 @@
 import { createServer } from "http";
+import { appendFile } from "./files.js";
+import { __dirname } from "./server.js";
+
+import path from "path";
 
 const port = process.env.port;
+
+const loggerPath = path.join(
+  __dirname,
+  "public",
+  "files",
+  "loggers",
+  "loges.txt"
+);
+
+const errorLoggerPath = path.join(
+  __dirname,
+  "public",
+  "files",
+  "loggers",
+  "error.loges.txt"
+);
 
 const users = [
   { id: 1, name: "sathish" },
@@ -10,7 +30,7 @@ const users = [
 
 // logger middleware
 const logger = (req, res, next) => {
-  console.log(`${req.method} to ${req.url}`);
+  appendFile(req, res, loggerPath, errorLoggerPath);
   next();
 };
 

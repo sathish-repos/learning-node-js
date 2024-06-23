@@ -16,7 +16,13 @@ const users = [
 //   res.sendFile(path.join(__dirname, "public", "index.html"));
 // });
 
-app.use(logger);
+// init logger
+// app.use(logger);
+
+// get single user
+app.get("/api/users/:id", (req, res) => {
+  res.json(users.filter((user) => user.id === parseInt(req.params.id)));
+});
 
 // get users
 app.get("/api/users", (req, res) => res.json(users));

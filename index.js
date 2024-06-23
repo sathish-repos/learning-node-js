@@ -5,13 +5,6 @@ const logger = require("./middleware/logger");
 const port = process.env.PORT || 5000;
 const app = express();
 
-const users = [
-  { id: 1, name: "sathish" },
-  { id: 2, name: "ruban" },
-  { id: 3, name: "saran" },
-  { id: 4, name: "nithsh" },
-];
-
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "public", "index.html"));
 // });
@@ -19,22 +12,10 @@ const users = [
 // init logger
 app.use(logger);
 
-// get single user
-app.get("/api/users/:id", (req, res) => {
-  let found = users.some((user) => user.id === parseInt(req.params.id));
-  if (found) {
-    res.json(users.filter((user) => user.id === parseInt(req.params.id)));
-  } else {
-    res
-      .status(404)
-      .json({ message: `No member found with id: ${req.params.id}` });
-  }
-});
-
-// get users
-app.get("/api/users", (req, res) => res.json(users));
-
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// users api routs
+app.use("/api/users", require("./routs/api/users"));
 
 app.listen(port, () => console.log(`server started on port ${port}`));

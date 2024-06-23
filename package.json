@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "learning node js & express for backend",
   "main": "index.js",
-  "type": "module",
   "scripts": {
+    "serve": "node index.js",
     "test": "node tests/test.js"
   },
   "repository": {

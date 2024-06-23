@@ -17,11 +17,18 @@ const users = [
 // });
 
 // init logger
-// app.use(logger);
+app.use(logger);
 
 // get single user
 app.get("/api/users/:id", (req, res) => {
-  res.json(users.filter((user) => user.id === parseInt(req.params.id)));
+  let found = users.some((user) => user.id === parseInt(req.params.id));
+  if (found) {
+    res.json(users.filter((user) => user.id === parseInt(req.params.id)));
+  } else {
+    res
+      .status(404)
+      .json({ message: `No member found with id: ${req.params.id}` });
+  }
 });
 
 // get users

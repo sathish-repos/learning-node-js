@@ -1,0 +1,21 @@
+{
+  "name": "learning-node",
+  "version": "1.0.0",
+  "description": "learning node js & express for backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sathish-repos"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "express",
+    "backend"
+  ],
+  "author": "sathishkumar",
+  "license": "MIT"
+}

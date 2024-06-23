@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "learning node js & express for backend",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "test": "node tests/test.js"
+    "test": "node tests/test.js",
+    "start": "node index.js",
+    "dev": "node --watch index.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
 const express = require("express");
+const uuid = require("uuid");
 const router = express.Router();
 
 const users = [
@@ -21,6 +22,21 @@ router.get("/:id", (req, res) => {
       .status(404)
       .json({ message: `No member found with id: ${req.params.id}` });
   }
+});
+
+// post user
+router.post("/", (req, res) => {
+  const newUser = {
+    id: uuid.v4(),
+    name: req.body.name,
+  };
+
+  if (!newUser.name) {
+    return res.status(400).json({ message: "please include name" });
+  }
+
+  users.push(newUser);
+  res.json(users);
 });
 
 module.exports = router;

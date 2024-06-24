@@ -12,6 +12,12 @@ const app = express();
 // init logger
 app.use(logger);
 
+// body parser
+app.use(express.json());
+
+// handle form submission
+app.use(express.urlencoded({ extended: false }));
+
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 

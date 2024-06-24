@@ -9,10 +9,10 @@ const users = [
   { id: 4, name: "nithsh" },
 ];
 
-// get users
+// GET users
 router.get("/", (req, res) => res.json(users));
 
-// get single user
+// GET single user
 router.get("/:id", (req, res) => {
   let found = users.some((user) => user.id === parseInt(req.params.id));
   if (found) {
@@ -24,7 +24,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-// post user
+// POST user
 router.post("/", (req, res) => {
   const newUser = {
     id: uuid.v4(),
@@ -37,6 +37,41 @@ router.post("/", (req, res) => {
 
   users.push(newUser);
   res.json(users);
+});
+
+// update (PUT) new user
+router.put("/:id", (req, res) => {
+  let found = users.some((user) => user.id === parseInt(req.params.id));
+  if (found) {
+    const updatedUser = req.body;
+    users.forEach((user) => {
+      if (user.id === parseInt(req.params.id)) {
+        user.name = updatedUser.name ? updatedUser.name : this.user.name;
+
+        res.json({ message: `user updated:`, user });
+      }
+    });
+  } else {
+    res
+      .status(404)
+      .json({ message: `No member found with id: ${req.params.id}` });
+  }
+});
+
+//Delete User
+router.delete("/:id", (req, res) => {
+  let found = users.some((user) => user.id === parseInt(req.params.id));
+
+  if (found) {
+    res.json({
+      message: "user deleted",
+      users: users.filter((user) => user.id !== parseInt(req.params.id)),
+    });
+  } else {
+    res
+      .status(404)
+      .json({ message: `No member found with id: ${req.params.id}` });
+  }
 });
 
 module.exports = router;
